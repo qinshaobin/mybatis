@@ -1,0 +1,90 @@
+#server配置
+server:
+  #配置服务器端口，默认为8080
+  port: 8081
+#  session:
+#    #用户回话session过期时间，以秒为单位
+#    timeout: 100000
+#  #配置访问路径，默认为/
+#  context-path: /mybatis-plus
+#  tomcat:
+#    #配置Tomcat编码，默认为UTF-8
+#    uri-encoding: utf-8
+
+#连接池的配置信息#
+spring:
+  ##数据源配置##
+  datasource:
+    driver-class-name: org.h2.Driver
+    #url: jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=0
+    url: jdbc:h2:file:/../Programmer/Code/Stu/orm/mybatis/mybatis-plus/src/main/resources/database/h2/testdb;MODE=MYSQL;DB_CLOSE_DELAY=0
+    username: sa
+    password: sa
+    initialSize: 10
+    minIdle: 5
+    maxActive: 50
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT * FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    #启动后执行脚本
+    #schema: classpath:/database/h2/schema.sql
+    #data: classpath:/database/h2/data.sql
+    #脚本编码
+    sql-script-encoding: utf-8
+  ##h2配置##
+  h2:
+    console:
+      enabled: true
+      path: /testdb
+      settings:
+        trace: true
+  ##热部署配置##
+  devtools:
+    restart:
+      #增加额外的资源监控#
+      additional-paths: mybatis-plus/src/main/resources
+  #环境配置
+  profiles:
+    active: ${spring.profiles.active:dev}
+
+#mybatis-plus配置#
+mybatis-plus:
+  mapper-locations: classpath:/mappers/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.bin.mybatis.plus.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    #refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置
+    #logic-delete-value: 0
+    #logic-not-delete-value: 1
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.springboot.xxx
+  configuration:
+    #开启驼峰映射
+    map-underscore-to-camel-case: true
+    #开启缓存
+    cache-enabled: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: varchar
+

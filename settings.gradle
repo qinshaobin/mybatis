@@ -1,0 +1,5 @@
+rootProject.name = 'mybatis'
+include 'mybatis-base'
+include 'mybatis-plus'
+
+

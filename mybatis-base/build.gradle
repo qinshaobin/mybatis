@@ -1,0 +1,25 @@
+group 'com.bin.mybatis'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    repositories {
+        //mavenLocal()
+        maven {
+            url aliyunMvnRepository
+        }
+        mavenCentral()//依赖Maven仓库
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot}")
+    }
+}
+
+dependencies {
+    compile (
+        extDependencies.mybatis,
+        extDependencies.mybatis_spring_boot,
+    )
+}

@@ -1,0 +1,3 @@
+基于springboot的mybatis-plus
+http://baomidou.oschina.io/mybatis-plus-doc/#/?id=%e7%ae%80%e4%bb%8b
+http://www.cnblogs.com/fingerboy/p/6657118.html

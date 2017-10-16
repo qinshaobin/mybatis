@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bin.mybatis.plus.mapper.SchoolMapper">
+    <!--auto generated Code-->
+    <resultMap id="allColumnMap" type="com.bin.mybatis.plus.entity.School">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="version" property="version"/>
+    </resultMap>
+
+    <resultMap id="schClaResultMap" type="com.bin.mybatis.plus.model.SchCla">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="version" property="version"/>
+        <collection property="classList" column="id" javaType="ArrayList"
+                    ofType="com.bin.mybatis.plus.entity.Class" select="com.bin.mybatis.plus.mapper.ClassMapper.getClassBySchoolId" />
+    </resultMap>
+
+    <!-- 查询一个学校下所有的班级 -->
+    <select id="getSchClasById" resultMap="schClaResultMap" parameterType="int">
+        select id,name,version from t_school where id=#{id}
+    </select>
+
+</mapper>
+

@@ -1,0 +1,65 @@
+#环境配置
+#spring.profiles.active
+#spring.profiles.active=dev-home
+
+#server配置
+server:
+  #配置服务器端口，默认为8080
+  port: 8081
+#  session:
+#    #用户回话session过期时间，以秒为单位
+#    timeout: 100000
+#  #配置访问路径，默认为/
+#  context-path: /mybatis-plus
+#  tomcat:
+#    #配置Tomcat编码，默认为UTF-8
+#    uri-encoding: utf-8
+
+###mybatis###
+#org.mybatis.spring.boot.autoconfigure.MybatisProperties
+#mybatis.config-location=classpath:mybatis.xml
+#mybatis.mapper-locations=classpath:/mapper/oracle/*.xml
+#mybatis.type-aliases-package=com.bin.doorealinv.mer.entity;
+#mybatis.executor-type=simple
+
+#连接池的配置信息#
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=0
+    username: sa
+    password: sa
+    initialSize: 10
+    minIdle: 5
+    maxActive: 50
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT * FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    #启动后执行脚本
+    schema: classpath:/database/schema.sql
+    data: classpath:/database/data.sql
+    #脚本编码
+    sql-script-encoding: utf-8
+  ##h2配置##
+  h2:
+    console:
+      enabled: true
+      path: /testdb
+      settings:
+        trace: true
+
+#mybatis
+#org.mybatis.spring.boot.autoconfigure.MybatisProperties
+mybatis:
+  config-location: classpath:mybatis.xml
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.bin.mybatis.entity
+  executor-type: simple
